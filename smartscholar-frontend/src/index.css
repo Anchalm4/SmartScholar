@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Custom base styles */
+@layer base {
+  html, body, #root {
+    @apply h-full w-full m-0 p-0 bg-gray-950 text-gray-100 antialiased;
+  }
+
+  a {
+    @apply text-indigo-400 hover:text-indigo-300 font-medium transition-colors;
+  }
+
+  button {
+    @apply rounded-xl border border-transparent bg-gray-800 px-4 py-2 text-sm font-medium 
+           text-white shadow-sm transition duration-200 hover:border-indigo-400 
+           hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500;
+    animation: glow 3s ease-in-out infinite;
+  }
+
+  h1 {
+    @apply text-4xl font-bold leading-tight;
+  }
+}
+
+/* ✅ Custom animations */
+@layer utilities {
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(99, 102, 241, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
+  }
+
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+}
