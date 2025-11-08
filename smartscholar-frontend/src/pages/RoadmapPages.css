@@ -1,0 +1,100 @@
+.roadmap-container {
+    font-family: Arial, sans-serif;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.roadmap-selector {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.roadmap-selector button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.roadmap-selector button:hover {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+}
+
+.roadmap-selector button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.roadmap-details h3 {
+    color: #333;
+}
+
+.roadmap-steps {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    position: relative;
+    /* This creates the vertical line for the timeline */
+    border-left: 3px solid #007bff;
+    margin-left: 20px;
+}
+
+.roadmap-step {
+    display: flex;
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+/* This creates the circle on the timeline */
+.roadmap-step::before {
+    content: '';
+    position: absolute;
+    left: -13px; /* Half of (width - border_width) */
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 3px solid #007bff;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.step-order {
+    display: none; /* We use the timeline dot instead */
+}
+
+.step-content {
+    background: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    width: 100%;
+}
+
+.step-content h4 {
+    margin: 0 0 5px 0;
+    color: #007bff;
+}
+
+.step-content p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.error-message {
+    color: #d9534f;
+}

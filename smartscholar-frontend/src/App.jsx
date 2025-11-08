@@ -5,6 +5,7 @@ import ProfileForm from "./pages/ProfileForm";
 import AnalysisResult from "./pages/AnalysisResult";
 import Dashboard from "./pages/Dashboard";
 import LandingPage from "./pages/LandingPage";
+import RoadmapPages from "./pages/RoadmapPages";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/profile" element={<ProfileForm />} />
         <Route path="/analysis/:id" element={<AnalysisResult />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/roadmaps" element={<RoadmapPages />} />
       </Routes>
     </BrowserRouter>
   );
