@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Register.css";
+import { registerUser } from "../api";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -18,45 +19,39 @@ export default function Register() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
+  if (formData.password !== formData.confirmPassword) {
+    setError("Passwords do not match");
+    return;
+  }
 
-    setLoading(true);
-    try {
-      const response = await fetch("http://127.0.0.1:8000/users/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+  setLoading(true);
+  try {
+    const res = await registerUser({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      confirm_password: formData.confirmPassword,
+    });
 
-      if (!response.ok) {
-        const data = await response.json();
-        setError(data.detail || "Registration failed");
-        setLoading(false);
-        return;
-      }
+    // Save token
+if (res.data.access_token) {
+  localStorage.setItem("token", res.data.access_token);
+  localStorage.setItem("user", JSON.stringify(res.data.user));  // ADD THIS
+}
 
-      const data = await response.json();
-      console.log("✅ Registered:", data);
-      navigate("/login");
-    } catch (err) {
-      console.error("🔥 Error:", err);
-      setError("Server not reachable");
-    } finally {
-      setLoading(false);
-    }
-  };
+navigate("/profile");
 
+
+    navigate("/profile");
+  } catch (err) {
+    setError(err.response?.data?.detail || "Registration failed");
+  }
+  setLoading(false);
+};
   return (
     <div className="register-container">
       <div className="glow glow-left"></div>

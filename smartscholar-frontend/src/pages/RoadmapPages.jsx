@@ -1,101 +1,90 @@
-import React, { useState, useEffect } from 'react';
-import './RoadmapPages.css'; // We'll create this file next for styling
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { motion } from "framer-motion";
+import { CheckCircle, Rocket, Target, ArrowUpRight } from "lucide-react";
+import "./RoadmapPages.css";
 
-function RoadmapPages() {
-    // State to hold the list of all roadmaps
-    const [roadmaps, setRoadmaps] = useState([]); 
-    
-    // State to hold the currently selected roadmap (with all its steps)
-    const [selectedRoadmap, setSelectedRoadmap] = useState(null);
-    
-    // State for loading and error messages
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+export default function RoadmapPages() {
+  const savedUser = localStorage.getItem("user");
+  const user = savedUser ? JSON.parse(savedUser) : null;
+  const userId = user?.id;
 
-    // 1. Fetch all roadmaps when the component first loads
-    useEffect(() => {
-        const fetchRoadmaps = async () => {
-            try {
-                // Assuming your backend is running on port 8000
-                // You might need to configure this URL in a .env file
-                const response = await fetch('http://127.0.0.1:8000/roadmaps/');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch roadmaps');
-                }
-                const data = await response.json();
-                setRoadmaps(data);
-            } catch (err) {
-                setError(err.message);
-            }
-        };
+  const [roadmap, setRoadmap] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-        fetchRoadmaps();
-    }, []); // Empty array means this runs only once on mount
+  useEffect(() => {
+    if (!userId) return;
 
-    // 2. Function to fetch a single roadmap's details
-    const handleRoadmapSelect = async (id) => {
-        setIsLoading(true);
-        setSelectedRoadmap(null); // Clear previous selection
-        setError(null);
+    axios
+      .get(`http://127.0.0.1:8000/roadmaps/generate/${userId}`)
+      .then((res) => {
+        setRoadmap(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, [userId]);
 
-        try {
-            const response =  await fetch("http://127.0.0.1:8000/roadmaps/");
+  if (loading) 
+    return <div className="loading">Generating your personalized roadmap...</div>;
 
-            if (!response.ok) {
-                throw new Error('Failed to fetch roadmap details');
-            }
-            const data = await response.json();
-            setSelectedRoadmap(data);
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+  if (!roadmap)
+    return <p className="no-data">No roadmap generated yet.</p>;
 
-    // 3. Render the component
-    return (
-        <div className="roadmap-container">
-            <h2>Career Roadmaps</h2>
-            
-            <div className="roadmap-selector">
-                <p>Select a roadmap to begin:</p>
-                {roadmaps.map(roadmap => (
-                    <button 
-                        key={roadmap.id} 
-                        onClick={() => handleRoadmapSelect(roadmap.id)}
-                        className={selectedRoadmap?.id === roadmap.id ? 'active' : ''}
-                    >
-                        {roadmap.title}
-                    </button>
-                ))}
+  return (
+    <div className="roadmap-page">
+
+      {/* PAGE HEADER */}
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        className="roadmap-header"
+      >
+        <h1>
+          <Rocket size={32} /> Your Roadmap to  
+          <span> {roadmap.dream_company} </span>
+        </h1>
+
+        <p className="role-tag">
+          <Target size={18} /> Role: {roadmap.dream_role}
+        </p>
+      </motion.div>
+
+      {/* TIMELINE */}
+      <div className="timeline-container">
+
+        {roadmap.steps.map((step, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.13 }}
+            className="timeline-step"
+          >
+            <div className="step-icon">
+              <CheckCircle size={26} />
             </div>
 
-            {error && <p className="error-message">Error: {error}</p>}
-            
-            {isLoading && <p>Loading...</p>}
+            <div className="step-content">
+              <h3>Step {i + 1}</h3>
+              <p>{step}</p>
+            </div>
+          </motion.div>
+        ))}
 
-            {selectedRoadmap && (
-                <div className="roadmap-details">
-                    <h3>{selectedRoadmap.title}</h3>
-                    <p>{selectedRoadmap.description}</p>
-                    
-                    <ul className="roadmap-steps">
-                        {selectedRoadmap.steps.map(step => (
-                            <li key={step.id} className="roadmap-step">
-                                <div className="step-order">{step.order}</div>
-                                <div className="step-content">
-                                    <h4>{step.title}</h4>
-                                    <p>{step.description}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </div>
-    );
+      </div>
+
+      {/* CTA */}
+      <motion.a
+        href="#"
+        className="cta-btn"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        Start Your Journey <ArrowUpRight size={18} />
+      </motion.a>
+    </div>
+  );
 }
-
-export default RoadmapPages;
-

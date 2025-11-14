@@ -1,0 +1,12 @@
+.layout-container {
+  display: flex;
+}
+
+.layout-content {
+  margin-left: 240px; /* sidebar width */
+  padding: 30px;
+  width: calc(100% - 240px);
+  min-height: 100vh;
+  background: #0a0d14;
+  color: white;
+}

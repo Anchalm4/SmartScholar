@@ -1,0 +1,247 @@
+.experience-container {
+  padding: 40px;
+  min-height: 100vh;
+  color: white;
+  position: relative;
+  background: radial-gradient(circle at top, #18061c, #0a0d14 70%);
+  overflow-x: hidden;
+}
+
+/* SHOOTING STARS */
+.stars, .stars2 {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: transparent url("/stars.png") repeat;
+  animation: moveStars 60s linear infinite;
+  opacity: 0.5;
+    pointer-events: none;
+
+}
+
+.stars2 {
+  animation-duration: 120s;
+  opacity: 0.3;
+}
+
+@keyframes moveStars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1000px); }
+}
+
+/* LOVE LETTER */
+.love-letter {
+  background: rgba(255, 255, 255, 0.09);
+  padding: 25px;
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+  max-width: 580px;
+  margin: auto;
+  text-align: center;
+}
+
+.love-letter h2 {
+  font-size: 26px;
+  color: #ff9ecd;
+}
+
+.love-letter p {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #ffd6e7;
+}
+
+/* GALLERY */
+.gallery {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spark {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: #ffd6e7;
+}
+
+/* CONFESSION BUTTON */
+.confess-btn {
+  margin-top: 30px;
+  background: linear-gradient(to right, #ff4d6d, #ff9ecd);
+  padding: 14px 28px;
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+    z-index: 9999 !important;   /* 💥 forces it above everything */
+      cursor: pointer;
+  cursor: pointer;
+
+
+}
+
+/* POPUP */
+.popup, .gift-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-box, .gift-box {
+  background: rgba(255,255,255,0.12);
+  padding: 30px;
+  width: 420px;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.popup-box h3, .gift-box h3 {
+  color: #ff9ecd;
+}
+
+.gift-btn {
+  margin-top: 14px;
+  background: #ffd700;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.close-btn {
+  margin-top: 12px;
+  background: rgba(255,255,255,0.2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.signature {
+  margin-top: 14px;
+  font-style: italic;
+  color: #ffe5ef;
+}
+
+/* MUSIC */
+.music-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.12);
+  padding: 8px;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.typing-popup {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.chat-bubble {
+  display: inline-flex;
+  background: rgba(255,255,255,0.12);
+  padding: 12px 22px;
+  border-radius: 20px;
+  gap: 6px;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background: #ff9ecd;
+  border-radius: 50%;
+  animation: typing 1s infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+  0% { opacity: 0.2; transform: translateY(2px); }
+  50% { opacity: 1; transform: translateY(-2px); }
+  100% { opacity: 0.2; transform: translateY(2px); }
+}
+
+.typed-text {
+  margin-top: 12px;
+  font-size: 18px;
+  color: #ffd6e7;
+}
+
+.petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.petal {
+  position: absolute;
+  top: -20px;
+  left: calc(10% + 80% * var(--i));
+  animation: fall 4s linear infinite;
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(120vh) rotate(360deg); }
+}
+
+.askout-card {
+  margin: 40px auto;
+  background: rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  width: 380px;
+}
+
+.askout-card h2 {
+  color: #ff9ecd;
+  margin-top: 10px;
+}
+
+.askout-card p {
+  color: #ffe5ef;
+  margin-top: 10px;
+}
+
+.yes-btn {
+  margin-top: 20px;
+  background: #ff4d6d;
+  border: none;
+  padding: 12px 20px;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}

@@ -1,0 +1,73 @@
+.forher-container {
+  position: relative;
+  padding: 40px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2a0e1f, #471730, #2b123f);
+  color: #fff;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Floating Hearts Background */
+.floating-hearts .heart {
+  position: absolute;
+  font-size: 18px;
+  opacity: 0.8;
+  pointer-events: none;
+  color: #ff4d6d;
+}
+
+.love-header {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #ffb3c6;
+}
+
+/* Cards Grid */
+.love-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 10px;
+}
+
+.love-card {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0px 0px 18px rgba(255, 77, 109, 0.25);
+  transition: 0.3s;
+}
+
+.love-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(255, 77, 109, 0.4);
+}
+
+.love-icon {
+  margin-bottom: 12px;
+}
+
+.love-card h3 {
+  font-size: 20px;
+  color: #ff9ecd;
+}
+
+.love-card p {
+  color: #ffd6e7;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.final-message {
+  margin-top: 45px;
+  text-align: center;
+  font-size: 20px;
+  color: #ffbcd6;
+  opacity: 0.9;
+}

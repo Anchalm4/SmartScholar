@@ -1,0 +1,44 @@
+.ats-container {
+  padding: 40px;
+  color: white;
+  background: #0b0f17;
+  min-height: 100vh;
+}
+
+.ats-form {
+  background: rgba(255,255,255,0.08);
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 450px;
+}
+
+.ats-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  background: #00e6ff;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.ats-result {
+  margin-top: 30px;
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.preview pre {
+  background: #000;
+  padding: 10px;
+  white-space: pre-wrap;
+  border-radius: 6px;
+}

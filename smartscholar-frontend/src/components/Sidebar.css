@@ -1,0 +1,81 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 70px;
+  height: 100vh;
+  backdrop-filter: blur(12px);
+  background: rgba(20, 20, 20, 0.55);
+  border-right: 1px solid rgba(255,255,255,0.1);
+  transition: width 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+}
+
+.sidebar.expanded {
+  width: 220px;
+}
+
+.sidebar-header {
+  padding: 20px;
+  font-size: 1.4rem;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.sidebar-nav {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav a {
+  padding: 14px 20px;
+  text-decoration: none;
+  color: rgb(200, 200, 200);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s ease, padding 0.2s ease;
+}
+
+.sidebar-nav a .text {
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.25s ease;
+}
+
+.sidebar.expanded a .text {
+  opacity: 1;
+}
+
+.sidebar-nav a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.sidebar-nav .active {
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 20px;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: rgba(255,0,0,0.3);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: rgba(255,0,0,0.5);
+}
