@@ -32,7 +32,7 @@ export default function LoveExperience() {
         <source src="/love-music.mp3" type="audio/mp3" />
       </audio>
 
-      {/* Music Toggle Button */}
+      {/* Music Toggle */}
       <button className="music-btn" onClick={toggleMusic}>
         {musicOn ? <VolumeX size={22} /> : <Music size={22} />}
       </button>
@@ -52,38 +52,49 @@ export default function LoveExperience() {
         </p>
       </motion.div>
 
-      {/* MEMORY GALLERY */}
-      <div className="gallery">
-        {[1, 2, 3].map((n, i) => (
-          <motion.div
-            key={i}
-            className="photo"
-            initial={{ opacity: 0, scale: 0.7 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.3 }}
-          >
-            <img src={`/mem${n}.jpg`} alt="Memory" />
-            <Sparkles className="spark" size={22} />
-          </motion.div>
-        ))}
+
+      {/* 🌹 SINGLE MEMORY IMAGE — ADDED HERE */}
+      <div className="single-photo">
+        <motion.div
+          className="big-photo"
+          initial={{ opacity: 0, scale: 0.5, rotate: -3 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <img src="/her.jpeg" alt="Her" />
+          <Sparkles className="spark" size={26} />
+        </motion.div>
+
+        <motion.p
+          className="memory-caption"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+        >
+          This one picture…  
+          <br />
+          feels like the moment my heart found its reason. ❤️
+        </motion.p>
       </div>
+
+
       {/* ❤️ CONFESSION BUTTON */}
-<motion.button
-  className="confess-btn"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ delay: 1.2 }}
-  onClick={() => {
-    setShowTyping(true);
-    setTimeout(() => setShowPetals(true), 3500);
-    setTimeout(() => setShowAskOut(true), 6500);
-  }}
->
-  Something I Want To Tell You 💗
-</motion.button>
+      <motion.button
+        className="confess-btn"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        onClick={() => {
+          setShowTyping(true);
+          setTimeout(() => setShowPetals(true), 3500);
+          setTimeout(() => setShowAskOut(true), 6500);
+        }}
+      >
+        Something I Want To Tell You 💗
+      </motion.button>
 
 
-      {/* 💬 TYPING ANIMATION */}
+      {/* 💬 TYPING MESSAGE */}
       {showTyping && (
         <div className="typing-popup">
           <div className="chat-bubble">
@@ -104,7 +115,7 @@ export default function LoveExperience() {
         </div>
       )}
 
-      {/* 🌸 FALLING PETALS */}
+      {/* 🌸 PETALS */}
       {showPetals && (
         <div className="petals">
           {[...Array(20)].map((_, i) => (

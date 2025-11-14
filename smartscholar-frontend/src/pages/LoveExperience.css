@@ -245,3 +245,35 @@
   border-radius: 10px;
   cursor: pointer;
 }
+/* SINGLE MEMORY PHOTO */
+.single-photo {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.big-photo {
+  width: 260px;
+  height: 310px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 25px rgba(255, 0, 120, 0.4);
+}
+
+.big-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.memory-caption {
+  margin-top: 18px;
+  color: #ffd6ea;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}
